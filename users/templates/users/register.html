@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} registration
+{% endblock title %}
+{% block style %}
+<style>
+    
+    div{
+        
+    position: relative;
+    margin: 0 auto;
+    padding: 15;
+    width: 100vh;
+    
+  
+   
+    
+  }
+  button{
+      
+      margin: 10px;
+      color:black;
+      border-radius: 12%;
+      background-color: rgb(184, 204, 240);
+      padding:5px 5px;
+  font-size: 20px;
+  border-radius: 10px;
+      
+  }
+  
+ 
+  
+  
+    </style>
+{% endblock style %}
+
+
+{% block content %}
+<div >
+    <form method="POST" >
+        {% csrf_token %}
+        <fieldset>
+            <legend>
+                Join Today
+            </legend>
+            {{form.as_p}}
+        </fieldset>
+        <button type="submit">Sign Up</button>
+    </form>
+
+    Already have an account?
+    <a href='#'> Sign In</a>
+</div>
+
+
+
+{% endblock content %}
+

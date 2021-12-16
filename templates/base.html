@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- semantic UI -->
+    <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <style>
+  .navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100;
+  overflow: hidden;
+
+  background-color: #333;
+  
+}
+
+.header {
+  float: left;
+}
+
+.header a {
+  
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 25px;
+  
+}
+.header a:hover {
+  background-color: #111;
+  color: rgb(105, 109, 163);
+}
+
+
+  </style>
+  {% block style %}{% endblock style %}
+  <body> 
+    <ul class=navbar>
+     
+      <li class=header ><a href=>Home</a></li>
+      <li class=header><a href=>Goals</a></li>
+      <li class=header><a href=>Activity</a></li>
+      
+    </ul>  
+    {% if messages %} 
+{% for message in messages %}
+<div style="position: relative; margin: 0 auto; background-color: rgb(184, 238, 197);  text-align: center; font-size: 15;">
+    {{message}}
+</div>{% endfor %}
+{% endif %}
+   {% block content %}{% endblock content %}
+  </body>
+</html>
