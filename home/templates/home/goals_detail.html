@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+{% block title %} homepage
+{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+
+<div  class="chart-container" style="position: relative; height:50vh; width:50vw; margin: auto;" >
+<h1>Your Goals</h1>
+
+        
+          <div style="border-style: groove; padding: 2%; border-radius: 10px; margin: 20px;">
+            
+            
+            <h1 style="color: black;" >{{ object.name }} {% if object.done %}<i class="material-icons" style="font-size:40px;color:green;padding-left: 60px;">done</i>{%endif %}</h1> </div>
+            
+
+            
+                
+              
+            
+           
+       
+   
+
+</div>
+
+
+
+
+
+{% else %}
+<div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
+    <h1>
+        You are not logged in!
+    </h1><br>
+    <a href="{% url 'login'%}"> Log In </a>
+</div>
+
+{% endif %}
+{% endblock content %}
+
+
+
+

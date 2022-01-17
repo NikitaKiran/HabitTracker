@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block style %}
+<style>
+    .asteriskField{
+        display: none;
+    }
+</style>
+{% endblock style %}
+
+
+{% block title %} registration
+{% endblock title %}
+
+{% block content %}
+<div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
+    <h1>Your Goals</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ formset.management_form}}
+        {% csrf_token %}
+        {% for form in formset %}
+        <fieldset class="form-group">            
+            {{ form|crispy }}
+        </fieldset>
+        {% endfor %}
+
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
+    <br><br>
+</div>
+
+
+{% endblock content %}
+

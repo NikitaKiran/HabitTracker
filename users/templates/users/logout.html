@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} registration
+{% endblock title %}
+{% block style %}
+<style>
+    div {
+        position: relative;
+        margin: 0 auto;
+        padding: 15;
+        width: 100vh;
+    }
+</style>
+{% endblock style %}
+
+{% block content %}
+<div>
+    <h1>
+        You have been logged out!
+    </h1><br>
+    <a href="{% url 'login'%}"> Log Back In </a>
+</div>
+{% endblock content %}
