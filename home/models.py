@@ -9,16 +9,15 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class DefaultActivites(models.Model):
+class DefaultActivites(models.Model):   
     
-    
-    name=models.CharField('Enter activity name:',max_length=50)
+    name=models.CharField('Activity Name:',max_length=50)
     user= models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     class Meta:
         unique_together=[['name','user']]
 
 class goals(models.Model):
-    name=models.CharField(max_length=50)
+    name=models.CharField('Goal Name:',max_length=50)
     done=models.BooleanField(default=False)
     user= models.ForeignKey(User,on_delete=models.CASCADE)
 

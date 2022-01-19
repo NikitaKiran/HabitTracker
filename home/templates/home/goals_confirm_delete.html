@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+{% block title %} Delete Goal
+{% endblock title %}
 {% block content %}
+<div  class="chart-container" style="position: relative; height:50vh; width:50vw; margin: auto;" >
     <div class="content-section">
         <h1>Delete Goal</h1>
         <form method="POST">
@@ -9,10 +12,11 @@
                 <h2>Are you sure you want to delete the goal "{{ object.name  }} "?</h2>
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-                <a class="btn btn-outline-secondary" href="{% url 'viewgoal' %}">Cancel</a>
+                <button class="btn btn-outline-danger" type="submit">Yes,Delete</button> 
+                <a class="btn btn-outline-secondary" href="{% url 'goal-list' %}">Cancel</a>
             </div>
         </form>
     </div>
+</div>
 {% endblock content %}
 

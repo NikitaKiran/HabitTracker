@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    {% block head %} {% endblock head %}
 
     <title>{% block title %}{% endblock title %}</title>
   </head>
@@ -58,14 +59,14 @@
   
   <body> 
     <ul class=htnavbar>
-      <li style="float: left;display: block; color: white; text-align: center; padding: 15px 25px;" >HabitTracker</li>
+      <li style="float: left;display: block; color: pink; text-align: center; padding: 15px 25px;" >HabitTracker</li>
       
      
       
       {% if user.is_authenticated %}
       <li class=htheader ><a href="{% url 'homepage'%}">Home</a></li>
       <li class=htheader><a href="{% url 'activity-log'%}">Log Activity</a></li>
-      <li class=htheader><a href="{% url 'registeractivity'%}">Add Activity List</a></li>
+      <li class=htheader><a href="{% url 'registeractivity'%}">My Activity List</a></li>
       <li class=htheader><a href="{% url 'registergoal'%}">Add Goal</a></li>
       <li class=htheader><a href="{% url 'timetrends'%}">View Timewise Trends</a></li>
       <li class=htheader><a href="{% url 'acttrends'%}">View Activity Trends </a></li>

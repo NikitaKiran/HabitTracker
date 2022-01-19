@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block style %}
+
+{% endblock style %}
+
+
+{% block title %} Delete Activity
+{% endblock title %}
+
+{% block content %}
+
+<div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
+    <h1>Delete Activity </h1>
+    
+    <form method="POST" >
+        
+        {% csrf_token %}
+        
+        <fieldset class="form-group">            
+            {{ form|crispy }}
+        </fieldset>
+        
+
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+        </div>
+    </form>
+
+    
+</div>
+
+
+{% endblock content %}
+

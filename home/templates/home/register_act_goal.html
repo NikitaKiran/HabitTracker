@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block style %}
+<style>
+    .asteriskField{
+        display: none;
+    }
+</style>
+{% endblock style %}
+
+
+{% block title %} Goals and Activities
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+<div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
+    <h1>{{heading}}</h1>
+    {%if error%}
+    <h4>{{error}}</h4>
+    {%else%}
+    
+    {% if actlist %}
+    <div style="border-style: dotted; padding: 2%; border-radius: 10px; margin: 20px;">
+    <h3>Your daily activity list contains :  </h3>
+    <ul>
+    {% for act in actlist %}
+    <li><p style="font-size: 20px;">{{act.name}}<br><p></li>
+    {% endfor %}
+</ul>
+</div>
+<a class="btn btn-outline-danger" href="{% url 'activity-delete' %}">Delete Activity</a>
+
+
+    {% endif %}
+{% if empty %}
+<h3>You have reached the maximum limit of 10 daily activities.</h3>
+{%else%}
+<h4>{{prompt}}</h4>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ formset.management_form}}
+        {% csrf_token %}
+        {% for form in formset %}
+        <fieldset class="form-group">            
+            {{ form|crispy }}
+        </fieldset>
+        {% endfor %}
+
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
+    {%endif%}
+    {%endif%}
+    <br><br>
+</div>
+
+
+{% endblock content %}
+

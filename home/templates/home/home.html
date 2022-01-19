@@ -2,7 +2,7 @@
 
 
 
-{% block title %} homepage
+{% block title %} Homepage
 {% endblock title %}
 
 {% block content %}
@@ -18,9 +18,9 @@
 <h1>Today's Activities</h1>
 <canvas id="myChart" ></canvas>
 <div  class="chart-container" style="position: relative; height:50vh; width:50vw; margin: auto;" >
-    
-    {% if Goals %}
     <h1>Your Goals</h1>
+    {% if Goals %}
+    
     {% for goal in Goals %}
             
               <div style="border-style: groove; padding: 2%; border-radius: 10px; margin: 20px;">
@@ -36,7 +36,11 @@
                
            
         {% endfor %}
+        {% else %}
+        <h3>No goals left to be completed</h3>
+        
         {% endif%}
+        <a href="{% url 'goal-list'%}"> View All Goals</a>
     
     </div>
 

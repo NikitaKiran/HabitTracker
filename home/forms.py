@@ -2,12 +2,12 @@ from email.policy import default
 from django import forms
 from django.forms import ModelForm
 from .models import DefaultActivites,goals, activitylog
-from .main import myuser,myuser1
+from .main import myuser,myuser1,myuser2
 from datetime import date as dt
 
-usednames=[]
+
 class defaultactform(ModelForm):
-    usednames=[]
+    
     class Meta:
         model = DefaultActivites
         fields = ['name']                    
@@ -17,11 +17,6 @@ class defaultactform(ModelForm):
         for instance in result:
             if instance.name == self.cleaned_data.get('name'):                
                 raise forms.ValidationError('This activity has already been added')
-        if self.cleaned_data.get('name') in usednames:
-            raise forms.ValidationError('This activity has already been added')
-        
-        usednames.append(self.cleaned_data.get('name'))        
-
         return self.cleaned_data.get('name')             
             
 class goalform(ModelForm):
@@ -38,12 +33,11 @@ class logactform(ModelForm):
         super().__init__(*args, **kwargs)
         choice=((None,'None'),)+tuple((act.name, act.name) for act in DefaultActivites.objects.filter(user=myuser1[-1]))
         self.fields['activity'] = forms.ChoiceField( choices= choice)
-    def clean_activity(self):
-        
-        
-        for instance in activitylog.objects.filter(user=myuser1[-1]) :
-            if instance.activity == self.cleaned_data.get('activity') and instance.date== dt.today():
-                
-                raise forms.ValidationError('You have already logged activity')
-       
-        return self.cleaned_data.get('activity')  
+    
+class DeleteActForm(forms.Form):
+    name=forms.CharField()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choice=((act.name, act.name) for act in DefaultActivites.objects.filter(user=myuser2[-1]))
+        self.fields['name'] = forms.ChoiceField( choices= choice,label='Name of activity you want to delete')
+
