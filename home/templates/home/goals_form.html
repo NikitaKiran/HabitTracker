@@ -1,33 +1,21 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
-{% block style %}
-
-{% endblock style %}
 
 
 {% block title %} Update Goal
 {% endblock title %}
 
 {% block content %}
-<div  class="chart-container" style="position: relative;  width:50vw; margin: auto;" >
-   
-    
-            
-              <div style="border-style: groove; padding: 2%; border-radius: 10px; margin: 20px;">
-                
-                
-                <h1 style="color: black;" >{{ object.name }} {% if object.done %}<i class="material-icons" style="font-size:40px;color:green;padding-left: 60px;">done</i>{%endif %}</h1> </div> </div>
+<div  class="chart-container" style="position: relative;  width:50vw; margin: auto;" >            
+            <div style="border-style: groove; padding: 2%; border-radius: 10px; margin: 20px;">               
+            <h1 style="color: black;" >{{ object.name }} {% if object.done %}<i class="material-icons" style="font-size:40px;color:green;padding-left: 60px;">done</i>{%endif %}</h1> </div> </div>
 <div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
     
-    <form method="POST" >
-        
-        {% csrf_token %}
-        
+    <form method="POST" >        
+        {% csrf_token %}        
         <fieldset class="form-group">            
             {{ form|crispy }}
-        </fieldset>
-        
+        </fieldset>      
 
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Submit</button>
@@ -38,7 +26,5 @@
     <a class="btn btn-outline-secondary" href="{% url 'goal-delete' object.id %}">Delete Goal</a>
     
 </div>
-
-
 {% endblock content %}
 

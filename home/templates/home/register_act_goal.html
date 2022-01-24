@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
 {% block style %}
 <style>
@@ -9,19 +8,14 @@
 </style>
 {% endblock style %}
 
-
 {% block title %} Goals and Activities
 {% endblock title %}
 
-
-
 {% block content %}
-
-
 <div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
     <h1>{{heading}}</h1>
     {%if error%}
-    <h4>{{error}}</h4>
+    <h4 style="color: red;">{{error}}</h4>
     {%else%}
     
     {% if actlist %}
@@ -34,8 +28,6 @@
 </ul>
 </div>
 <a class="btn btn-outline-danger" href="{% url 'activity-delete' %}">Delete Activity</a>
-
-
     {% endif %}
 {% if empty %}
 <h3>You have reached the maximum limit of 10 daily activities.</h3>
@@ -50,7 +42,6 @@
             {{ form|crispy }}
         </fieldset>
         {% endfor %}
-
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Submit</button>
         </div>
@@ -59,7 +50,5 @@
     {%endif%}
     <br><br>
 </div>
-
-
 {% endblock content %}
 

@@ -21,15 +21,24 @@
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <style>
+    {% load static %}
+    .mybody {
+  background-image: url('{% static "bg.jpg"%}');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  
+  
+  
+}
   .htnavbar {
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 100;
   overflow: hidden;
-
-  background-color: #333;
-  
+  background-color: #333;  
 }
 
 .htheader {
@@ -39,25 +48,61 @@
   float:right;
 }
 
-.htheader a {
-  
+.htheader a {  
   display: block;
   color: white;
   text-align: center;
-  padding: 15px 25px;
-  
+  padding: 15px 25px;  
 }
 .htheader a:hover {
   background-color: #111;
   color: rgb(105, 109, 163);
 }
+.htdropdown {
+  float: left;
+  overflow: hidden;
+}
 
-
-  </style>
+.htdropdown .htdropbtn {  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 15px 25px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.htdropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 170px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.htdropbtn:hover{
+  background-color: #111;
+  color: rgb(105, 109, 163);
+}
+.htdropdown-content a {
+  float: none;
+  color: black;
+  padding: 15px 30px;
+  display: block;
+  text-align: left;
+}
+.htdropdown-content a:hover {
+  background-color: #ddd;
+}
+.htdropdown:hover .htdropdown-content {
+  display: block;
+  
+}
+</style>
   {% block style %}{% endblock style %}
 
   
-  <body> 
+  <body class=mybody> 
     <ul class=htnavbar>
       <li style="float: left;display: block; color: pink; text-align: center; padding: 15px 25px;" >HabitTracker</li>
       
@@ -68,15 +113,29 @@
       <li class=htheader><a href="{% url 'activity-log'%}">Log Activity</a></li>
       <li class=htheader><a href="{% url 'registeractivity'%}">My Activity List</a></li>
       <li class=htheader><a href="{% url 'registergoal'%}">Add Goal</a></li>
-      <li class=htheader><a href="{% url 'timetrends'%}">View Timewise Trends</a></li>
-      <li class=htheader><a href="{% url 'acttrends'%}">View Activity Trends </a></li>
-      <li class='htheader htright'><a href="{% url 'logout'%}">Logout</a></li>
       
-      
-      {% endif %}
-
-      
-      
+     
+      <div class="htdropdown">
+        <button class="htdropbtn">View Timewise Trends
+         
+        </button>
+        <div class="htdropdown-content">
+          <a href="{% url 'timetrends-daily'%}">Daily Trends</a>
+          <a href="{% url 'timetrends-weekly'%}">Weekly Trends</a>
+          <a href="{% url 'timetrends-monthly'%}">Monthly Trends</a>
+        </div>
+      </div> 
+      <div class="htdropdown">
+        <button class="htdropbtn">View Activity Trends         
+        </button>
+        <div class="htdropdown-content">
+          <a href="{% url 'acttrends-daily'%}">Daily Trends</a>
+          <a href="{% url 'acttrends-weekly'%}">Weekly Trends</a>
+          <a href="{% url 'acttrends-monthly'%}">Monthly Trends</a>
+        </div>
+      </div> 
+      <li class='htheader htright'><a href="{% url 'logout'%}">Logout</a></li>      
+      {% endif %}      
     </ul>  
     
 

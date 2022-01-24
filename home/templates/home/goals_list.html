@@ -1,51 +1,20 @@
 {% extends 'base.html' %}
-
-
-
 {% block title %} Goal List
 {% endblock title %}
 
 {% block content %}
-{% if user.is_authenticated %}
-{% if messages %} 
-{% for message in messages %}
-<div style=" background-color: rgb(184, 238, 197);  text-align: center; font-size: 15;">
-    {{message}}
-</div>{% endfor %}
-{% endif %}
-
 <div  class="chart-container" style="position: relative; height:50vh; width:50vw; margin: auto;" >
 <h1>Your Goals</h1>
-{% for goal in Goals %}
+{%if Goals%}
+  {% for goal in Goals %}
         
-          <div style="border-style: groove; padding: 2%; border-radius: 10px; margin: 20px;">
-            
-            
-            <h1 ><a  href="{% url 'goal-update' goal.id %}">{{ goal.name }}</a> {% if goal.done %}<i class="material-icons" style="font-size:40px;color:green;padding-left: 60px;">done</i>{%endif %}</h1> </div>
-            
-
-            
-                
-              
-            
-           
-       
-    {% endfor %}
-
+          <div style="border-style: groove; padding: 2%; border-radius: 10px; margin: 20px;">            
+          <h1 ><a  href="{% url 'goal-update' goal.id %}">{{ goal.name }}</a> {% if goal.done %}<i class="material-icons" style="font-size:40px;color:green;padding-left: 60px;">done</i>{%endif %}</h1> </div> 
+  {% endfor %}
+{%else%}
+          <p style="color: red;font-size: medium;">No goals added<p>
+{%endif%}
 </div>
-
-
-
-
-{% else %}
-<div style="position: relative; margin: 0 auto; padding: 15; width: 100vh;" >
-    <h1>
-        You are not logged in!
-    </h1><br>
-    <a href="{% url 'login'%}"> Log In </a>
-</div>
-
-{% endif %}
 {% endblock content %}
 
 
